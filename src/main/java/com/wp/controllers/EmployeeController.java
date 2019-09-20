@@ -18,16 +18,19 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeservice;
 	
+
+
+	
 	@RequestMapping("entryform")
 	public String viewEntryForm() {
-		return "EntryForm.jsp";
+		return "EntryForm";
 	}
 	
 	//search employee by id or ename
 	@RequestMapping("searchemp")
 	public ModelAndView searchEmployee(@RequestParam("enoename") String enoename){
 		List<Emp> emplist = employeeservice.searchEmp(enoename);
-		ModelAndView mv = new ModelAndView("index.jsp");
+		ModelAndView mv = new ModelAndView("index");
 		mv.addObject("EmpList",emplist);
 		if(emplist.size()>0) 
 		{
@@ -43,7 +46,7 @@ public class EmployeeController {
 	@RequestMapping("entryemployee")
 	public ModelAndView employeeEntry(@ModelAttribute("entryform") Emp emp) {
 		Emp e = employeeservice.save(emp);
-		ModelAndView mv = new ModelAndView("EntryForm.jsp");
+		ModelAndView mv = new ModelAndView("EntryForm");
 		if(e != null) {
 			mv.addObject("Emp", e);
 			mv.addObject("result", true);
@@ -59,7 +62,7 @@ public class EmployeeController {
 	@RequestMapping("getallemployee")
 	public ModelAndView allEmployee() {
 		List<Emp> emplist = employeeservice.getAllEmployees();
-		ModelAndView mv = new ModelAndView("EmployeeList.jsp");
+		ModelAndView mv = new ModelAndView("EmployeeList");
 		mv.addObject("EmpList",emplist);
 		return mv;
 	}
@@ -68,7 +71,7 @@ public class EmployeeController {
 	@RequestMapping("updatepage")
 	public ModelAndView getUpdateEmp(@RequestParam("eno") int eno) {
 		Emp e = employeeservice.get(eno);
-		ModelAndView mv = new ModelAndView("UpdateEmp.jsp");
+		ModelAndView mv = new ModelAndView("UpdateEmp");
 		mv.addObject("Emp", e);
 		return mv;
 	}
@@ -77,7 +80,7 @@ public class EmployeeController {
 	@RequestMapping("updateemp")
 	public ModelAndView updateEmp(@ModelAttribute("updatedEmp") Emp emp) {
 		Emp e = employeeservice.update(emp);
-		ModelAndView mv = new ModelAndView("UpdateEmp.jsp");
+		ModelAndView mv = new ModelAndView("UpdateEmp");
 		mv.addObject("Emp",e);
 		mv.addObject("Result",true);
 		return mv;
@@ -87,7 +90,7 @@ public class EmployeeController {
 	@RequestMapping("deleteemp")
 	public ModelAndView deleteEmp(@RequestParam("eno") int eno) {
 		Boolean result = employeeservice.delete(eno);
-		ModelAndView mv = new ModelAndView("DeleteEmpResult.jsp");
+		ModelAndView mv = new ModelAndView("DeleteEmpResult");
 		mv.addObject("Result", result);
 		return mv;
 	}

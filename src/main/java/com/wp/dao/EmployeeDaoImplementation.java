@@ -18,7 +18,7 @@ import com.wp.models.Emp;
 public class EmployeeDaoImplementation implements EmployeeDao{
 	
 	@Autowired
-	private static SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 
 	@Override
 	public Emp insertEmp(Emp e) {

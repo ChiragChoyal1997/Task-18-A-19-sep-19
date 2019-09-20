@@ -22,6 +22,7 @@ public class ProjectConfig {
 	public InternalResourceViewResolver viewResolver() {
 		InternalResourceViewResolver irvr = new InternalResourceViewResolver();
 		irvr.setSuffix(".jsp");
+		irvr.setPrefix("/WEB-INF/pages/");
 		return irvr;
 	}
 	
